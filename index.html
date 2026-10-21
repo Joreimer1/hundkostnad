@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vad kostar en hund på riktigt? – Den kompletta svenska hundkalkylatorn</title>
+  <meta name="description" content="Räkna ut den verkliga kostnaden för att ha hund i Sverige. Inkluderar storstadsdagis, realistisk veterinär- och försäkringskostnad, tandvård, foder, täcken och dolda utgifter.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <div class="logo">
+        <span class="logo-icon">🐾</span>
+        <div class="logo-text">
+          <span class="logo-title">Hundkalkylatorn</span>
+          <span class="logo-subtitle">Verklighetsbaserad hundekonomi</span>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <button type="button" class="btn-preset-toggle" id="btn-quick-presets" title="Välj snabbprofil">
+          <span class="icon">✨</span>
+          <span class="text">Exempelprofiler</span>
+        </button>
+        <button type="button" class="btn-reset" id="btn-reset-all" title="Återställ alla val">
+          <span class="icon">↺</span>
+          <span class="text">Återställ</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span class="badge-dot"></span>
+          Inga glädjekalkyler – 100% realistiska siffror
+        </div>
+        <h1 class="hero-title">Vad kostar det att ha hund <em>på riktigt?</em></h1>
+        <p class="hero-desc">
+          Många artiklar på nätet påstår att en hund kostar 800–1 500 kr i månaden. Men sanningen i en svensk vardag – med dagis i storstad, faktisk försäkringspremie, förebyggande tandvård, varma täcken och hotelltillägg – är ofta en helt annan.
+        </p>
+        
+        <div class="hero-highlights">
+          <div class="highlight-chip">
+            <span class="chip-icon">🏙️</span>
+            <span>Dagis Stockholm: ~4 500–5 500 kr/mån</span>
+          </div>
+          <div class="highlight-chip">
+            <span class="chip-icon">🛡️</span>
+            <span>Toppförsäkring t.ex. Yorkie: ~1 300 kr/mån</span>
+          </div>
+          <div class="highlight-chip">
+            <span class="chip-icon">🦷</span>
+            <span>Tandsten & narkos: Småraser ofta 4 000–8 000 kr/år</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#wizard" class="btn btn-primary" id="btn-start-calc">
+            <span>Börja guidad kalkyl</span>
+            <span class="arrow">↓</span>
+          </a>
+          <button type="button" class="btn btn-secondary" id="btn-jump-summary">
+            <span>Se totalkalkyl direkt</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-image-wrapper">
+          <img src="assets/dog-hero.jpg" alt="Lycklig Yorkshire Terrier och Golden Retriever i ett vackert skandinaviskt hem" class="hero-img">
+          <div class="floating-glass-card left-card">
+            <div class="card-icon">🐕</div>
+            <div>
+              <div class="glass-label">Månadssnitt i storstad</div>
+              <div class="glass-value" id="hero-quick-city">~6 500 – 9 000 kr</div>
+            </div>
+          </div>
+          <div class="floating-glass-card right-card">
+            <div class="card-icon">🩺</div>
+            <div>
+              <div class="glass-label">Dolda utgifter som glöms</div>
+              <div class="glass-value">Tänder, självrisk, täcken</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Presets Modal / Drawer -->
+  <div class="presets-bar container" id="presets-container">
+    <div class="presets-header">
+      <span class="presets-title">⚡ Snabbvälj ett realistiskt scenario:</span>
+      <span class="presets-hint">Klicka för att ladda en färdig profil</span>
+    </div>
+    <div class="presets-grid">
+      <button type="button" class="preset-card active" data-preset="stockholm-yorkie">
+        <div class="preset-badge">Populär förfrågan</div>
+        <div class="preset-icon">🐶</div>
+        <div class="preset-name">Stockholms-Yorkie</div>
+        <div class="preset-desc">Liten hund, Stockholm, heltidsdagis, toppförsäkring (1300 kr), tandvård & hotellvistelser.</div>
+      </button>
+
+      <button type="button" class="preset-card" data-preset="family-golden">
+        <div class="preset-badge">Familjefavorit</div>
+        <div class="preset-icon">🦮</div>
+        <div class="preset-name">Familjens Golden i villa</div>
+        <div class="preset-desc">Stor hund, mellanstor stad, hemarbete/hundvakt, standardförsäkring, rejäl foderåtgång.</div>
+      </button>
+
+      <button type="button" class="preset-card" data-preset="active-border">
+        <div class="preset-badge">Träning & Sport</div>
+        <div class="preset-icon">🐕‍🦺</div>
+        <div class="preset-name">Aktiv brukshund / Mellanhund</div>
+        <div class="preset-desc">Mellanstor hund, kurser & tävling, kvalitetsfoder, deltidsdagis, aktiv fritid.</div>
+      </button>
+
+      <button type="button" class="preset-card" data-preset="budget-conscious">
+        <div class="preset-badge">Prismedveten</div>
+        <div class="preset-icon">🐕</div>
+        <div class="preset-name">Egen regi & Småstad</div>
+        <div class="preset-desc">Liten/mellan hund, ingen dagiskostnad, basförsäkring, smarta inköp och god hälsa.</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Guided Section -->
+  <main class="main-content container" id="wizard">
+    <div class="layout-grid">
+      
+      <!-- Wizard / Inputs Column -->
+      <div class="calculator-column">
+
+        <!-- Progress bar & Step navigation -->
+        <div class="stepper-nav">
+          <div class="stepper-progress-bg">
+            <div class="stepper-progress-fill" id="progress-fill" style="width: 16.6%;"></div>
+          </div>
+          <div class="stepper-tabs" id="stepper-tabs">
+            <button type="button" class="step-tab active" data-step="1">
+              <span class="step-num">1</span>
+              <span class="step-text">Hund & Boende</span>
+            </button>
+            <button type="button" class="step-tab" data-step="2">
+              <span class="step-num">2</span>
+              <span class="step-text">Hunddagis</span>
+            </button>
+            <button type="button" class="step-tab" data-step="3">
+              <span class="step-num">3</span>
+              <span class="step-text">Försäkring & Vård</span>
+            </button>
+            <button type="button" class="step-tab" data-step="4">
+              <span class="step-num">4</span>
+              <span class="step-text">Mat & Godis</span>
+            </button>
+            <button type="button" class="step-tab" data-step="5">
+              <span class="step-num">5</span>
+              <span class="step-text">Prylar & Täcken</span>
+            </button>
+            <button type="button" class="step-tab" data-step="6">
+              <span class="step-num">6</span>
+              <span class="step-text">Träning & Resor</span>
+            </button>
+          </div>
+        </div>
+
+        <form id="dog-calc-form" onsubmit="event.preventDefault();">
+          
+          <!-- STEP 1: Hunden & Boende -->
+          <section class="step-section active" data-step-panel="1">
+            <div class="step-header">
+              <div class="step-tag">Steg 1 av 6</div>
+              <h2 class="step-title">Vem är hunden och var bor ni?</h2>
+              <p class="step-intro">Hundens storlek, ras och din bostadsort påverkar nästan alla kostnader – från foder och försäkring till dagispriser.</p>
+            </div>
+
+            <!-- Hundstorlek -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Hundens storlek & rasgrupp</span>
+                <span class="info-bubble" title="Små raser äter mindre men har ofta dyrare tandvård. Stora raser äter mer och kan ha dyrare medicindoser och större utrustning.">ℹ️</span>
+              </label>
+              <div class="option-cards-grid grid-3">
+                <label class="option-card">
+                  <input type="radio" name="dog_size" value="small" checked>
+                  <div class="card-inner">
+                    <span class="card-emoji">🐾</span>
+                    <strong class="card-title">Liten hund</strong>
+                    <span class="card-sub">Under 10 kg (t.ex. Yorkie, Chihuaha, Tax, Fransk bulldog)</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="dog_size" value="medium">
+                  <div class="card-inner">
+                    <span class="card-emoji">🐕</span>
+                    <strong class="card-title">Mellanstor hund</strong>
+                    <span class="card-sub">10–25 kg (t.ex. Cocker spaniel, Border collie, Pudel)</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="dog_size" value="large">
+                  <div class="card-inner">
+                    <span class="card-emoji">🦮</span>
+                    <strong class="card-title">Stor hund</strong>
+                    <span class="card-sub">25+ kg (t.ex. Golden retriever, Schäfer, Labrador, Berner sennen)</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Bostadsort / Region -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Var bor du? (Geografisk prisnivå)</span>
+                <span class="info-bubble" title="Storstäder har markant högre dagisavgifter och ofta högre försäkringspremier och veterinärtaxor.">ℹ️</span>
+              </label>
+              <div class="option-cards-grid grid-3">
+                <label class="option-card">
+                  <input type="radio" name="location" value="stockholm" checked>
+                  <div class="card-inner">
+                    <span class="card-emoji">🏙️</span>
+                    <strong class="card-title">Stockholm</strong>
+                    <span class="card-sub">Högsta dagis- och klinikpriserna</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="location" value="major_city">
+                  <div class="card-inner">
+                    <span class="card-emoji">🏘️</span>
+                    <strong class="card-title">Göteborg / Malmö / Större stad</strong>
+                    <span class="card-sub">Medelhög till hög kostnadsnivå</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="location" value="small_town">
+                  <div class="card-inner">
+                    <span class="card-emoji">🏡</span>
+                    <strong class="card-title">Mindre stad / Landsbygd</strong>
+                    <span class="card-sub">Lägre dagis- och lokalkostnader</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Inköp / Engångskostnad start -->
+            <div class="form-group box-highlight">
+              <div class="toggle-row">
+                <div>
+                  <strong class="toggle-title">Räkna med engångskostnad för valp/hundköp</strong>
+                  <div class="toggle-sub">SKK-registrerad renrasig valp, omplacering eller adoptionsavgift.</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="include_initial_purchase" checked>
+                  <span class="slider-round"></span>
+                </label>
+              </div>
+
+              <div class="conditional-fields" id="purchase_fields">
+                <div class="field-row">
+                  <label for="purchase_price" class="sub-label">Inköpspris hund / valp:</label>
+                  <div class="input-with-unit">
+                    <input type="range" id="purchase_price" min="0" max="45000" step="1000" value="25000">
+                    <span class="unit-val" id="purchase_price_val">25 000 kr</span>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <label for="start_kit_price" class="sub-label">Startutrustning (bädd, bilbur/bälte, koppel, matskålar m.m.):</label>
+                  <div class="input-with-unit">
+                    <input type="range" id="start_kit_price" min="1000" max="12000" step="500" value="4500">
+                    <span class="unit-val" id="start_kit_price_val">4 500 kr</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <span></span>
+              <button type="button" class="btn btn-primary btn-next-step" data-next="2">
+                <span>Nästa: Hunddagis & Passning</span>
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- STEP 2: Hunddagis & Passning -->
+          <section class="step-section" data-step-panel="2">
+            <div class="step-header">
+              <div class="step-tag">Steg 2 av 6</div>
+              <h2 class="step-title">Hunddagis, dagmatte eller hemarbete?</h2>
+              <p class="step-intro">Hundar får enligt Jordbruksverket inte lämnas ensamma för länge (max ca 4–5 timmar för en vuxen hund). Hur löser du vardagen?</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>Vardagsomsorg för hunden</span>
+                <span class="info-bubble" title="I Stockholm kostar en heltidsplats på hunddagis ca 4 500 – 5 500 kr/månad. I mindre städer ca 3 000 – 4 000 kr.">ℹ️</span>
+              </label>
+
+              <div class="option-cards-grid grid-2">
+                <label class="option-card">
+                  <input type="radio" name="daycare_type" value="daycare_full" checked>
+                  <div class="card-inner">
+                    <span class="card-emoji">🏢</span>
+                    <strong class="card-title">Heltid Hunddagis (5 dagar/v)</strong>
+                    <span class="card-sub" id="daycare-full-desc">Stockholm: Ca 4 500 – 5 500 kr/mån</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="daycare_type" value="daycare_part">
+                  <div class="card-inner">
+                    <span class="card-emoji">📅</span>
+                    <strong class="card-title">Deltid Hunddagis (2–3 dagar/v)</strong>
+                    <span class="card-sub" id="daycare-part-desc">Ca 2 800 – 3 800 kr/mån</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="daycare_type" value="dogwalker">
+                  <div class="card-inner">
+                    <span class="card-emoji">🚶</span>
+                    <strong class="card-title">Hundrastare / Dagmatte</strong>
+                    <span class="card-sub">Privatperson eller tjänst, ca 2 000 – 3 500 kr/mån</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="daycare_type" value="home_office">
+                  <div class="card-inner">
+                    <span class="card-emoji">💻</span>
+                    <strong class="card-title">Hemarbete / Ta med till jobbet</strong>
+                    <span class="card-sub">0 kr/mån i fast avgift (du sköter rastning själv)</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Custom Daycare Price Adjuster -->
+            <div class="form-group" id="daycare_custom_group">
+              <label for="daycare_cost_slider" class="form-label">
+                <span>Justera månadskostnad för hunddagis / passning:</span>
+                <span class="unit-val" id="daycare_cost_val">5 000 kr/mån</span>
+              </label>
+              <input type="range" id="daycare_cost_slider" min="0" max="7000" step="100" value="5000">
+              <div class="range-labels">
+                <span>0 kr (Hemma)</span>
+                <span>3 000 kr (Småstad)</span>
+                <span>5 000 kr (Sthlm standard)</span>
+                <span>7 000 kr (Exklusivt)</span>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-outline btn-prev-step" data-prev="1">
+                <span class="arrow">←</span>
+                <span>Föregående</span>
+              </button>
+              <button type="button" class="btn btn-primary btn-next-step" data-next="3">
+                <span>Nästa: Försäkring & Vård</span>
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- STEP 3: Försäkring & Veterinärvård -->
+          <section class="step-section" data-step-panel="3">
+            <div class="step-header">
+              <div class="step-tag">Steg 3 av 6</div>
+              <h2 class="step-title">Försäkring, tandvård och veterinär</h2>
+              <p class="step-intro">På nätet ser man ofta "300 kr/mån" för försäkring. I verkligheten har en Yorkshire Terrier eller Fransk Bulldog i Stockholm med högsta veterinärvårdsbelopp en premie på upp till 1 300 kr/mån!</p>
+            </div>
+
+            <!-- Försäkringsnivå -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Veterinärvårdsförsäkring</span>
+                <span class="info-bubble" title="Premie baseras på ras (vissa raser har hög skaderisk), ort (dyrare i storstäder) och omfattning (120 000 - 150 000 kr tak, medicin, rehab, MR/CT).">ℹ️</span>
+              </label>
+
+              <div class="option-cards-grid grid-3">
+                <label class="option-card">
+                  <input type="radio" name="insurance_tier" value="premium" checked>
+                  <div class="card-inner">
+                    <span class="card-badge">Toppskydd</span>
+                    <span class="card-emoji">🛡️</span>
+                    <strong class="card-title">Högsta nivån</strong>
+                    <span class="card-sub">Maximalt belopp (120k–160k kr), fri medicin, rehab, MR/CT. Rekommenderas för storstad/utsatta raser.</span>
+                    <div class="card-price-tag" id="ins-premium-est">Ca 1 300 kr/mån</div>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="insurance_tier" value="standard">
+                  <div class="card-inner">
+                    <span class="card-emoji">📑</span>
+                    <strong class="card-title">Mellannivå (Standard)</strong>
+                    <span class="card-sub">Bra grundskydd (60k–90k kr), rimlig självrisk. Bra för tåliga raser eller mindre orter.</span>
+                    <div class="card-price-tag" id="ins-standard-est">Ca 650 kr/mån</div>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="insurance_tier" value="basic">
+                  <div class="card-inner">
+                    <span class="card-emoji">⚠️</span>
+                    <strong class="card-title">Basförsäkring</strong>
+                    <span class="card-sub">Lägre tak (30k–40k kr), hög självrisk, begränsad medicin. Risk för höga egna kostnader vid akutolycka.</span>
+                    <div class="card-price-tag" id="ins-basic-est">Ca 350 kr/mån</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Manuell slider för försäkringspremie -->
+            <div class="form-group">
+              <div class="field-header-row">
+                <label for="insurance_slider" class="sub-label">Exakt månadspremie för din hund:</label>
+                <span class="unit-val" id="insurance_cost_val">1 300 kr/mån</span>
+              </div>
+              <input type="range" id="insurance_slider" min="200" max="2200" step="50" value="1300">
+              <div class="range-labels">
+                <span>200 kr</span>
+                <span>650 kr (Mellansvensk)</span>
+                <span>1 300 kr (Yorkie Sthlm)</span>
+                <span>2 000+ kr</span>
+              </div>
+            </div>
+
+            <!-- Tandvård - Speciellt små raser! -->
+            <div class="form-group box-highlight-warning">
+              <div class="dental-header">
+                <span class="dental-icon">🦷</span>
+                <div>
+                  <strong class="dental-title">Tandvård – Hundvärldens mest underskattade kostnad!</strong>
+                  <p class="dental-desc">
+                    Små raser (som Yorkshire terrier, chihuahua, dvärgpudel, tax) har trångställda tänder och drabbas nästan oundvikligen av svår tandsten, tandfickor och tandlossning (parodontit). Regelbunden rengöring i narkos (PTR) kostar ofta <strong>4 000–8 000 kr</strong> per tillfälle – och täcks sällan av vanlig försäkring!
+                  </p>
+                </div>
+              </div>
+
+              <div class="option-cards-grid grid-3">
+                <label class="option-card">
+                  <input type="radio" name="dental_care" value="high" checked>
+                  <div class="card-inner">
+                    <span class="card-emoji">✨</span>
+                    <strong class="card-title">Årlig professionell sanering</strong>
+                    <span class="card-sub">Narkos, röntgen och tandstensborttagning varje år (rekommenderas för Yorkie & småraser).</span>
+                    <div class="card-price-tag">~500 kr/mån (6 000 kr/år)</div>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="dental_care" value="medium">
+                  <div class="card-inner">
+                    <span class="card-emoji">🪥</span>
+                    <strong class="card-title">Vartannat år / Mindre problem</strong>
+                    <span class="card-sub">Narkossanering vartannat till vart tredje år samt daglig tandborstning hemma.</span>
+                    <div class="card-price-tag">~250 kr/mån (3 000 kr/år)</div>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="dental_care" value="low">
+                  <div class="card-inner">
+                    <span class="card-emoji">🦴</span>
+                    <strong class="card-title">Endast grundvård hemma</strong>
+                    <span class="card-sub">Tuggben & hemborstning (vanligare för stora hundar med rymligare käke och stark emalj).</span>
+                    <div class="card-price-tag">~80 kr/mån (1 000 kr/år)</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Årliga rutinveterinär & självriskbuffert -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Årliga rutinkontroller, vaccinationer & självriskbuffert</span>
+                <span class="info-bubble" title="Även med försäkring betalar du en fast självrisk (ca 1 500-3 500 kr) plus 15-25% rörlig självrisk vid klinikbesök, plus årlig vaccin och fästingmedel.">ℹ️</span>
+              </label>
+
+              <div class="grid-2 form-row-compact">
+                <div class="compact-input-card">
+                  <div class="compact-title">💉 Vaccination & hälsokontroll</div>
+                  <div class="compact-sub">Årlig spruta mot kennelhosta/parvo + fästingmedel</div>
+                  <div class="input-with-unit">
+                    <input type="number" id="annual_vet_routine" class="form-number-input" value="1400" min="500" max="4000" step="100">
+                    <span class="unit-text">kr/år</span>
+                  </div>
+                </div>
+
+                <div class="compact-input-card">
+                  <div class="compact-title">🏥 Självrisk- och nödbuffert</div>
+                  <div class="compact-sub">Månatligt sparande för oförutsedda självrisker & recept</div>
+                  <div class="input-with-unit">
+                    <input type="number" id="monthly_vet_buffer" class="form-number-input" value="350" min="0" max="1500" step="50">
+                    <span class="unit-text">kr/mån</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-outline btn-prev-step" data-prev="2">
+                <span class="arrow">←</span>
+                <span>Föregående</span>
+              </button>
+              <button type="button" class="btn btn-primary btn-next-step" data-next="4">
+                <span>Nästa: Mat & Godis</span>
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- STEP 4: Foder, Godis & Kost -->
+          <section class="step-section" data-step-panel="4">
+            <div class="step-header">
+              <div class="step-tag">Steg 4 av 6</div>
+              <h2 class="step-title">Mat, foderkvalitet och hundgodis</h2>
+              <p class="step-intro">Hundens storlek styr volymen, men foderkvaliteten avgör kilopriset. En liten Yorkie äter lite men äter ofta gourmet/veterinärfoder, medan en Golden äter 15 kg foder i månaden!</p>
+            </div>
+
+            <!-- Foderkvalitet -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Fodertyp & kvalitetsnivå</span>
+              </label>
+
+              <div class="option-cards-grid grid-3">
+                <label class="option-card">
+                  <input type="radio" name="food_quality" value="premium" checked>
+                  <div class="card-inner">
+                    <span class="card-emoji">🥩</span>
+                    <strong class="card-title">Premium / Färskfoder (BARF)</strong>
+                    <span class="card-sub">Spannmålsfritt, färskfruset eller veterinäranpassat torrfoder av toppklass.</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="food_quality" value="standard">
+                  <div class="card-inner">
+                    <span class="card-emoji">🥣</span>
+                    <strong class="card-title">Kvalitetsfoder / Djurbutik</strong>
+                    <span class="card-sub">Känt märke från djuraffär (t.ex. Royal Canin, Eukanuba, Acana).</span>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="food_quality" value="budget">
+                  <div class="card-inner">
+                    <span class="card-emoji">🌾</span>
+                    <strong class="card-title">Basfoder / Dagligvaruhandel</strong>
+                    <span class="card-sub">Enklare torrfoder köpt på ICA eller stormarknad.</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Justera matkostnad -->
+            <div class="form-group">
+              <div class="field-header-row">
+                <label for="food_cost_slider" class="sub-label">Beräknad månadskostnad för foder:</label>
+                <span class="unit-val" id="food_cost_val">450 kr/mån</span>
+              </div>
+              <input type="range" id="food_cost_slider" min="150" max="2200" step="50" value="450">
+              <div class="range-labels">
+                <span>150 kr (Liten bas)</span>
+                <span>500 kr (Liten lyx / Mellan)</span>
+                <span>1 200 kr (Stor premium)</span>
+                <span>2 000+ kr</span>
+              </div>
+            </div>
+
+            <!-- Godis, tuggben och belöningar -->
+            <div class="form-group">
+              <div class="field-header-row">
+                <label for="treats_cost_slider" class="sub-label">Hundgodis, träningsgodis & tuggben:</label>
+                <span class="unit-val" id="treats_cost_val">250 kr/mån</span>
+              </div>
+              <input type="range" id="treats_cost_slider" min="50" max="800" step="25" value="250">
+              <div class="range-labels">
+                <span>50 kr (Minimalt)</span>
+                <span>250 kr (Vardagligt tugg)</span>
+                <span>500+ kr (Aktiv träning & naturprodukter)</span>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-outline btn-prev-step" data-prev="3">
+                <span class="arrow">←</span>
+                <span>Föregående</span>
+              </button>
+              <button type="button" class="btn btn-primary btn-next-step" data-next="5">
+                <span>Nästa: Prylar & Förbrukning</span>
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- STEP 5: Prylar, Täcken & Förbrukning -->
+          <section class="step-section" data-step-panel="5">
+            <div class="step-header">
+              <div class="step-tag">Steg 5 av 6</div>
+              <h2 class="step-title">Förbrukningsartiklar, täcken & utrustning</h2>
+              <p class="step-intro">Bajspåsar, leksaker och schampo rullar på varje månad. Dessutom behöver många hundar (speciellt små eller korthåriga) regntäcke och vinteroverall för det nordiska klimatet.</p>
+            </div>
+
+            <div class="items-checklist-grid">
+              
+              <!-- Hundbajspåsar -->
+              <div class="check-item-card">
+                <div class="check-icon">💩</div>
+                <div class="check-details">
+                  <div class="check-name">Hundbajspåsar & hygien</div>
+                  <div class="check-desc">Biologiskt nedbrytbara påsar (ca 3–4 rullar/mån) + tasservetter & schampo.</div>
+                </div>
+                <div class="check-amount">
+                  <input type="number" id="cost_poop_bags" class="compact-num" value="95" min="20" max="300" step="5">
+                  <span class="amount-unit">kr/mån</span>
+                </div>
+              </div>
+
+              <!-- Täcken & Kläder -->
+              <div class="check-item-card">
+                <div class="check-icon">🧥</div>
+                <div class="check-details">
+                  <div class="check-name">Täcken (vinter, regn & reflex)</div>
+                  <div class="check-desc">Små hundar fryser lätt i snöslask. 1–2 nya täcken eller förslitningsbyten per år.</div>
+                </div>
+                <div class="check-amount">
+                  <input type="number" id="cost_coats_annual" class="compact-num" value="1200" min="0" max="4000" step="100">
+                  <span class="amount-unit">kr/år</span>
+                </div>
+              </div>
+
+              <!-- Leksaker & slitage -->
+              <div class="check-item-card">
+                <div class="check-icon">🎾</div>
+                <div class="check-details">
+                  <div class="check-name">Leksaker, aktivering & bollar</div>
+                  <div class="check-desc">Mjukisdjur, aktiveringspussel och bollar som tuggas sönder eller tappas bort.</div>
+                </div>
+                <div class="check-amount">
+                  <input type="number" id="cost_toys_monthly" class="compact-num" value="120" min="0" max="600" step="10">
+                  <span class="amount-unit">kr/mån</span>
+                </div>
+              </div>
+
+              <!-- Koppel, sele & tillbehör -->
+              <div class="check-item-card">
+                <div class="check-icon">🦮</div>
+                <div class="check-details">
+                  <div class="check-name">Koppel, sele, lampor & reflexer</div>
+                  <div class="check-desc">Slitage, nya selar, Orbiloc-säkerhetslampor för mörka vinterpromenader.</div>
+                </div>
+                <div class="check-amount">
+                  <input type="number" id="cost_gear_annual" class="compact-num" value="900" min="0" max="3000" step="50">
+                  <span class="amount-unit">kr/år</span>
+                </div>
+              </div>
+
+              <!-- Hundklippning / Pälsvård -->
+              <div class="check-item-card">
+                <div class="check-icon">✂️</div>
+                <div class="check-details">
+                  <div class="check-name">Hundfrisör / Kloklippning</div>
+                  <div class="check-desc">Yorkshire terrier, pudel och bichon kräver trimning var 8:e vecka (ca 700–1 100 kr/gång).</div>
+                </div>
+                <div class="check-amount">
+                  <input type="number" id="cost_grooming_monthly" class="compact-num" value="450" min="0" max="1500" step="50">
+                  <span class="amount-unit">kr/mån</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-outline btn-prev-step" data-prev="4">
+                <span class="arrow">←</span>
+                <span>Föregående</span>
+              </button>
+              <button type="button" class="btn btn-primary btn-next-step" data-next="6">
+                <span>Nästa: Träning & Resor</span>
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- STEP 6: Kurser, Träning & Hotell/Resor -->
+          <section class="step-section" data-step-panel="6">
+            <div class="step-header">
+              <div class="step-tag">Steg 6 av 6</div>
+              <h2 class="step-title">Kurser, träning och hotellvistelser</h2>
+              <p class="step-intro">Det moderna hundlivet inkluderar ofta semestrar och helgresor. Svenska hotell tar nästan alltid ett hundtillägg (200–500 kr/vistelse), och kurser ger en trygg hund.</p>
+            </div>
+
+            <!-- Valpkurs & Lydnad -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Hundkurser & träning</span>
+                <span class="info-bubble" title="En vanlig valpkurs eller vardagslydnadskurs kostar ca 1 800 - 2 800 kr för 5-6 tillfällen.">ℹ️</span>
+              </label>
+
+              <div class="option-cards-grid grid-3">
+                <label class="option-card">
+                  <input type="radio" name="training_level" value="active" checked>
+                  <div class="card-inner">
+                    <span class="card-emoji">🏆</span>
+                    <strong class="card-title">Valpkurs + Allmänlydnad</strong>
+                    <span class="card-sub">1–2 kurser per år (valpkurs, vardagslydnad, specialsök/nosarbete).</span>
+                    <div class="card-price-tag">~3 500 kr/år</div>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="training_level" value="puppy_only">
+                  <div class="card-inner">
+                    <span class="card-emoji">🎓</span>
+                    <strong class="card-title">Enbart grundkurs / valpkurs</strong>
+                    <span class="card-sub">En grundkurs första året, därefter egen träning.</span>
+                    <div class="card-price-tag">~1 800 kr/år</div>
+                  </div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="training_level" value="none">
+                  <div class="card-inner">
+                    <span class="card-emoji">📖</span>
+                    <strong class="card-title">Egen träning (Böcker & YouTube)</strong>
+                    <span class="card-sub">Tränar helt själv utan kursavgifter.</span>
+                    <div class="card-price-tag">0 kr/år</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Resor, Hotelltillägg & Hundpensionat -->
+            <div class="form-group box-highlight">
+              <h3 class="box-sub-title">🏨 Resor, hotelltillägg och semesterpassning</h3>
+              <p class="box-sub-text">Hur reser ni under semestrar och långhelger?</p>
+
+              <div class="grid-2 form-row-compact">
+                <div class="compact-input-card">
+                  <div class="compact-title">🛎️ Extra hotelltillägg</div>
+                  <div class="compact-sub">Hotell tar ca 250–400 kr/natt eller vistelse för hundrum. Beräkna antal nätter/år:</div>
+                  <div class="input-with-unit">
+                    <input type="number" id="hotel_nights_annual" class="form-number-input" value="6" min="0" max="50" step="1">
+                    <span class="unit-text">nätter/år (~<span id="hotel_calc_val">1 800</span> kr)</span>
+                  </div>
+                </div>
+
+                <div class="compact-input-card">
+                  <div class="compact-title">🏡 Hundpensionat / Semestervakt</div>
+                  <div class="compact-sub">Om hunden inte kan följa med på utlandsresa (ca 400–600 kr/dygn):</div>
+                  <div class="input-with-unit">
+                    <input type="number" id="boarding_days_annual" class="form-number-input" value="4" min="0" max="30" step="1">
+                    <span class="unit-text">dagar/år (~<span id="boarding_calc_val">2 000</span> kr)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-outline btn-prev-step" data-prev="5">
+                <span class="arrow">←</span>
+                <span>Föregående</span>
+              </button>
+              <button type="button" class="btn btn-primary" id="btn-finish-calc">
+                <span>🎉 Se min fullständiga kalkyl</span>
+                <span class="arrow">↓</span>
+              </button>
+            </div>
+          </section>
+
+        </form>
+
+      </div>
+
+      <!-- Live Summary Sticky Card Column -->
+      <aside class="summary-column" id="summary-sidebar">
+        <div class="summary-card sticky-card">
+          
+          <div class="summary-card-header">
+            <div>
+              <span class="summary-badge">Din beräknade totalkostnad</span>
+              <h3 class="summary-title" id="summary-profile-name">Stockholms-Yorkie</h3>
+            </div>
+            <div class="pulse-indicator" title="Uppdateras i realtid">
+              <span class="pulse-dot"></span>
+              Live
+            </div>
+          </div>
+
+          <!-- Total Monthly Hero Number -->
+          <div class="total-monthly-box">
+            <span class="total-label">Löpande kostnad per månad</span>
+            <div class="total-amount-row">
+              <span class="currency-symbol">ca</span>
+              <span class="total-amount" id="total-monthly-amount">7 915</span>
+              <span class="total-unit">kr/mån</span>
+            </div>
+            <div class="daily-equivalent">
+              Motsvarar ca <strong id="daily-cost">264 kr</strong> per dag
+            </div>
+          </div>
+
+          <!-- Total Annual & First Year -->
+          <div class="annual-summary-grid">
+            <div class="annual-mini-card">
+              <span class="mini-label">Årskostnad (löpande)</span>
+              <span class="mini-val" id="total-annual-amount">94 980 kr</span>
+            </div>
+            <div class="annual-mini-card">
+              <span class="mini-label">År 1 (inkl. inköp)</span>
+              <span class="mini-val" id="total-year1-amount">124 480 kr</span>
+            </div>
+          </div>
+
+          <!-- Visual Breakdown Chart / Bars -->
+          <div class="cost-breakdown-section">
+            <h4 class="breakdown-heading">Kostnadsfördelning per månad</h4>
+            
+            <div class="breakdown-stacked-bar" id="stacked-bar">
+              <div class="bar-segment bar-daycare" style="width: 63%;" title="Dagis & passning"></div>
+              <div class="bar-segment bar-insurance" style="width: 16%;" title="Försäkring"></div>
+              <div class="bar-segment bar-food" style="width: 6%;" title="Foder & godis"></div>
+              <div class="bar-segment bar-dental" style="width: 6%;" title="Tandvård & vård"></div>
+              <div class="bar-segment bar-misc" style="width: 9%;" title="Övrigt & resor"></div>
+            </div>
+
+            <ul class="breakdown-list" id="breakdown-items-list">
+              <!-- Dynamically populated or rendered -->
+              <li class="breakdown-row">
+                <span class="color-dot dot-daycare"></span>
+                <span class="item-name">Hunddagis & passning</span>
+                <span class="item-cost" id="b-cost-daycare">5 000 kr</span>
+              </li>
+              <li class="breakdown-row">
+                <span class="color-dot dot-insurance"></span>
+                <span class="item-name">Försäkring & buffert</span>
+                <span class="item-cost" id="b-cost-insurance">1 650 kr</span>
+              </li>
+              <li class="breakdown-row">
+                <span class="color-dot dot-dental"></span>
+                <span class="item-name">Tandvård & rutinveterinär</span>
+                <span class="item-cost" id="b-cost-dental">617 kr</span>
+              </li>
+              <li class="breakdown-row">
+                <span class="color-dot dot-food"></span>
+                <span class="item-name">Foder, tugg & godis</span>
+                <span class="item-cost" id="b-cost-food">700 kr</span>
+              </li>
+              <li class="breakdown-row">
+                <span class="color-dot dot-gear"></span>
+                <span class="item-name">Täcken, bajspåsar & prylar</span>
+                <span class="item-cost" id="b-cost-gear">390 kr</span>
+              </li>
+              <li class="breakdown-row">
+                <span class="color-dot dot-travel"></span>
+                <span class="item-name">Kurser, hotell & semester</span>
+                <span class="item-cost" id="b-cost-travel">608 kr</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Reality Check Alert -->
+          <div class="reality-comparison-card" id="reality-check">
+            <div class="comp-header">
+              <span class="comp-icon">💡</span>
+              <strong>Varför är detta så mycket högre än 1 200 kr?</strong>
+            </div>
+            <p class="comp-text">
+              Standardsidor räknar ofta utan hunddagis (som är den största utgiften för arbetande i storstad), antar att hunden aldrig behöver sövas för tandsten och räknar på orealistiskt låg försäkring. Med vår kalkyl ser du vad plånboken faktiskt behöver vara beredd på!
+            </p>
+          </div>
+
+          <!-- Actions -->
+          <div class="summary-actions">
+            <button type="button" class="btn btn-primary btn-block" id="btn-print-summary">
+              <span>📄 Skriv ut / Spara PDF-sammanställning</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-block" id="btn-share-link">
+              <span>🔗 Kopiera länk med mina val</span>
+            </button>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Deep Dive FAQ / Guide Section -->
+  <section class="faq-section container">
+    <div class="section-title-wrap text-center">
+      <div class="badge-pill">Fakta & Expertråd</div>
+      <h2 class="section-heading">Allt du behöver veta om hundens kostnader</h2>
+      <p class="section-sub">De 4 största fällorna som överraskar nya och erfarna hundägare i Sverige.</p>
+    </div>
+
+    <div class="faq-grid">
+      <article class="faq-card">
+        <div class="faq-icon">🦷</div>
+        <h3 class="faq-title">Varför är tandvård så dyrt för små raser?</h3>
+        <p class="faq-text">
+          Små raser har lika många tänder (42 stycken som vuxna) som en Sankt Bernhard, men packade i en bråkdel så stor käke. Det skapar trångställda tandfickor där bakterier frodas och bildar hård tandsten. Vid 3–4 års ålder har över 80% av småhundar parodontit. Att söva en hund med intubationsnarkos, ta fullmundsröntgen och ultraljudssanera kostar ofta mellan 4 500 och 9 000 kr – en utgift som försäkringsbolagen oftast undantar om det bedöms som parodontit eller förebyggande tandvård.
+        </p>
+      </article>
+
+      <article class="faq-card">
+        <div class="faq-icon">🏙️</div>
+        <h3 class="faq-title">Hunddagis i Stockholm vs mindre orter</h3>
+        <p class="faq-text">
+          Lokalhyror och personalkrav i Stockholm driver upp månadspriserna till ca 4 500–5 500 kr för en heltidsplats. Dessutom råder ofta långa köer på attraktiva dagis. I mindre städer ligger månadsavgiften oftast mellan 2 800 och 3 800 kr. Kan du jobba hemifrån eller ha med hunden på kontoret sparar du 50 000–65 000 kr varje år.
+        </p>
+      </article>
+
+      <article class="faq-card">
+        <div class="faq-icon">🛡️</div>
+        <h3 class="faq-title">Varför är hundförsäkringen så dyr i storstäder?</h3>
+        <p class="faq-text">
+          Försäkringsbolagens premier baseras på postnummer, ras och ålder. Storstäder som Stockholm har djursjukhus med dygnet-runt-akuter och avancerad specialistvård (MR-kameror, intensivvård), vilket gör veterinärräkningarna markant dyrare. Väljer du högsta nivån med 150 000 kr i veterinärvård, fri medicin och låg fast självrisk för en ras som Yorkie, Mops eller Fransk bulldog är 1 200–1 600 kr/månad helt normalt.
+        </p>
+      </article>
+
+      <article class="faq-card">
+        <div class="faq-icon">🏨</div>
+        <h3 class="faq-title">Hotell och resor – hunden som reskamrat</h3>
+        <p class="faq-text">
+          Allt fler hotell i Sverige (t.ex. Scandic, Strawberry/Nordic Choice och boutiquehotell) tillåter hund, men tar i regel ett tillägg på 200–400 kr per vistelse eller natt för extrasanering av rummet. Ska du på weekend 4–6 gånger om året blir det snabbt 1 500–2 500 kr extra. Vid utlandssemester där hunden inte kan följa med kostar ett godkänt hundpensionat ca 450–700 kr per dygn.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="alert">Länk kopierad till urklipp!</div>
+
+  <!-- Mobile Bottom Sticky Bar -->
+  <div class="mobile-sticky-bar" id="mobile-sticky">
+    <div class="mobile-summary-info">
+      <span class="m-label">Månadskostnad:</span>
+      <span class="m-val" id="mobile-monthly-val">7 915 kr/mån</span>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm" id="btn-toggle-mobile-sheet">
+      <span>Se specifikation</span>
+      <span class="arrow">↑</span>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">🐾</span>
+          <span class="logo-title">Hundkalkylatorn</span>
+        </div>
+        <p class="footer-text">
+          Framtagen för att ge framtida och nuvarande hundägare en ärlig, transparent och verklighetsbaserad bild av hundägandets ekonomi i Sverige.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <span class="footer-heading">Snabblänkar</span>
+        <a href="#wizard" class="footer-link">Börja kalkylen</a>
+        <a href="#presets-container" class="footer-link">Exempelprofiler</a>
+        <a href="#reality-check" class="footer-link">Varför är siffrorna högre?</a>
+      </div>
+
+      <div class="footer-disclaimer">
+        <span class="footer-heading">Viktig information</span>
+        <p class="disclaimer-text">
+          Kalkylatorn bygger på verkliga marknadspriser (2025/2026) för hunddagis, veterinärvård, foder och försäkringspremier hos ledande bolag i Sverige. Individuella avvikelser förekommer beroende på ras, ålder och avtal.
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        © 2026 Hundkalkylatorn Sverige. Skapad med kärlek för Sveriges hundar och deras hussar och mattar.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
